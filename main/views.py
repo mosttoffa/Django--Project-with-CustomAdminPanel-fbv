@@ -22,3 +22,9 @@ def product(request):
 
     return render(request, 'front/product.html')
 
+
+def product_detail(request):
+
+
+    return render(request, 'front/product_detail.html')
+

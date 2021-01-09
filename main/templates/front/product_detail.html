@@ -1,0 +1,35 @@
+{% extends 'front/master.html' %}
+
+
+{% load staticfiles %}
+
+
+{% block mainblock %}
+
+<div class="container-fluid">
+    <div class="row">
+      <img style="width: 100%" src="{% static 'front/img/image.jpg' %}" alt="">
+    </div>
+  </div>
+
+  <div class="container py-5">
+    <div class="row mt-5">
+      <div class="col-10 mx-auto col-md-6 my-3">
+        <img src="{% static 'front/img/product-2.png' %}" alt="">
+      </div>
+      <div class="col-10 mx-auto col-md-6 my-3">
+        <div>
+          <h1 class="product_title">HTC One</h1>
+          <h5 class="text-info font-italic mb-3">
+            <span class="mr-1">$</span> 300
+          </h5>
+          <p class="product_description">Product Description</p>
+          <p class="text-justify product_text">zlxkcjok ai oi iofsjj oiadjsj zdjzkj lsdkj lskdiejho urieryeiur nbmnbvmvb asejkfhsjfh ioueir kajdhkj
+            zjhkx eudjkdh ksdjkjhd aieuj oasjcxc oaisjdc </p>
+          <p class="text-justify product_text"><b>Out of Stock</b></p>
+    </div>
+   </div>
+  </div>
+</div>
+
+{% endblock %}
