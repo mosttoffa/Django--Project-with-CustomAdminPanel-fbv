@@ -15,3 +15,10 @@ def contact(request):
 
 
     return render(request, 'front/contact.html')
+
+
+def product(request):
+
+
+    return render(request, 'front/product.html')
+
