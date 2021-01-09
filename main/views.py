@@ -8,4 +8,10 @@ from .models import Main
 def home(request):
 
 
-    return render(request, 'home.html')
+    return render(request, 'front/home.html')
+
+
+def contact(request):
+
+
+    return render(request, 'front/contact.html')
