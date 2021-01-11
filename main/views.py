@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 
+
 def home(request):
 
     sitename = "Amin Tech Ltd | Home"
@@ -49,9 +50,9 @@ def my_logout(request):
 
 def contact(request):
 
-    # sitename = "Amin Tech Ltd | Contact"
+    sitename = "Amin Tech Ltd | Contact"
 
-    return render(request, 'front/contact.html')
+    return render(request, 'front/contact.html', {'sitename':sitename})
 
 
 def product(request):
