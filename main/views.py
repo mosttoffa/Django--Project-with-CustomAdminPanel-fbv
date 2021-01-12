@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Main
 from django.contrib.auth import authenticate, login, logout
-
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -40,11 +40,60 @@ def my_login(request):
 
     return render(request, 'front/login.html')
 
+
+def myregister(request):
+
+    if request.method == 'POST':
+
+        uname = request.POST.get('uname')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        if password1 != password2 :
+            msg = "Your Pass Didn't Match"
+            return render(request, 'front/msgbox.html', {'msg':msg})
+
+
+        count1 = 0
+        count2 = 0
+        count3 = 0 
+        count4 = 0
+
+        for i in password1 :
+
+            if i > "0" and i < "9" :
+                count1 = 1
+            if i > "A" and i < "Z" :
+                count2 = 1
+            if i > 'a' and i < 'z' :
+                count3 = 1
+            if i > "!" and i < "(" :
+                count4 = 1
+
+        if count1 == 0 or count2 == 0 or count3 == 0 or count4 == 0 :
+            msg = "Your Pass Is Not Strong"
+            return render(request, 'front/msgbox.html', {'msg':msg})
+
+        if len(password1) < 8 :
+            msg = "Your Pass Must Be 8 Character"
+            return render(request, 'front/msgbox.html', {'msg':msg})
+
+        if len(User.objects.filter(username=uname)) == 0 and len(User.objects.filter(email=email)) == 0 :
+
+            user = User.objects.create_user(username=uname,email=email,password=password1)
+
+
+    return render(request, 'front/login.html')
+
+
+
 def my_logout(request):
 
     logout(request)
     
     return redirect('my_login')
+
 
 
 
