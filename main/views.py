@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Main
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-# Create your views here.
 
+
+
+# Create your views here.
 
 
 def home(request):
@@ -26,14 +28,14 @@ def panel(request):
 
 def my_login(request):
 
-    #Login authentication
+    #Login authentication 
     if request.method == 'POST':
         utxt = request.POST.get('username')
         ptxt = request.POST.get('password')
-              #user authentic
+              #User authentic
         if utxt != "" and ptxt !="":
             user = authenticate(username=utxt, password=ptxt)
-                #user does't exixt
+                #If user does't exixt
             if user != None:
                 login(request,user)
                 return redirect('panel')
@@ -44,7 +46,7 @@ def my_login(request):
 def myregister(request):
 
     if request.method == 'POST':
-
+        #User Registration.
         uname = request.POST.get('uname')
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
@@ -54,7 +56,7 @@ def myregister(request):
             msg = "Your Pass Didn't Match"
             return render(request, 'front/msgbox.html', {'msg':msg})
 
-
+        #Strong password Algorithm.
         count1 = 0
         count2 = 0
         count3 = 0 
@@ -78,7 +80,8 @@ def myregister(request):
         if len(password1) < 8 :
             msg = "Your Pass Must Be 8 Character"
             return render(request, 'front/msgbox.html', {'msg':msg})
-
+        
+        #Check similar UserName and Email.
         if len(User.objects.filter(username=uname)) == 0 and len(User.objects.filter(email=email)) == 0 :
 
             user = User.objects.create_user(username=uname,email=email,password=password1)
