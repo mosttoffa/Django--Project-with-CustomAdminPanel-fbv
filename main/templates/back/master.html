@@ -1,5 +1,7 @@
 {% load staticfiles %}
 
+{% load extera_auth %}
+
 {% if user.is_authenticated %}
 
 
@@ -44,6 +46,9 @@
 
         <!-- Modernizr (browser feature detection library) -->
         <script src="{%static 'back/js/vendor/modernizr.min.js'%}"></script>
+    
+        {% block headblock %}
+        {% endblock %}
     </head>
     <body>
         <!-- Page Wrapper -->
@@ -117,6 +122,8 @@
                                 </li>
 
 
+                                {% if request.user|has_group:"masteruser" %}
+
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
                                     <span class="sidebar-header-title">User Management</span>
@@ -138,6 +145,7 @@
                                 <li>
                                     <a href="/panel/contactform" class=""><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Contact Management</span></a>
                                 </li>
+                                {% endif %}
                                 
                             </ul>
                             <!-- END Sidebar Navigation -->                            
@@ -213,6 +221,10 @@
         <!-- Load and execute javascript code used only in this page -->
         <script src="{%static 'back/js/pages/index.js'%}"></script>
         <script>$(function(){ Index.init(); });</script>
+   
+        {% block footerblock %}
+        {% endblock %}
+        
     </body>
 </html>
 

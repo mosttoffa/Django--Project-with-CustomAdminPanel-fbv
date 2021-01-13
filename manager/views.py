@@ -74,6 +74,15 @@ def manager_group_add(request):
 def manager_group_del(request, name):
 
 
+    perm = 0
+    for i in request.user.groups.all():
+        if i.name == "masteruser" : perm = 1
+
+    if perm == 0 :
+        error = "Access Denied"
+        return render(request, 'back/error.html' , {'error':error})
+
+
     b = Group.objects.filter(name=name)
     b.delete()
 
