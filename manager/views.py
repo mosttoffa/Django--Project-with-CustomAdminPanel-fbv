@@ -30,12 +30,30 @@ def manager_del(request,pk):
 
 def manager_group(request):
 
-    group = Group.objects.all()
+    perm = 0
+    for i in request.user.groups.all():
+        if i.name == "masteruser" : perm = 1
+
+    if perm == 0 :
+        error = "Access Denied"
+        return render(request, 'back/error.html' , {'error':error})
+
+    group = Group.objects.all().exclude(name="masteruser")
 
     return render(request, 'back/manager_group.html', {'group':group})
 
 
+
 def manager_group_add(request):
+
+
+    perm = 0
+    for i in request.user.groups.all():
+        if i.name == "masteruser" : perm = 1
+
+    if perm == 0 :
+        error = "Access Denied"
+        return render(request, 'back/error.html' , {'error':error})
 
 
     if request.method == 'POST' :
