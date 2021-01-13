@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Main
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from manager.models import Manager
 
 
 
@@ -47,10 +48,15 @@ def myregister(request):
 
     if request.method == 'POST':
         #User Registration.
+        name = request.POST.get('name')
         uname = request.POST.get('uname')
         email = request.POST.get('email')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
+
+        if name == "" :
+            msg = "Input Your Name"
+            return render(request, 'front/msgbox.html', {'msg':msg})
 
         if password1 != password2 :
             msg = "Your Pass Didn't Match"
@@ -81,11 +87,12 @@ def myregister(request):
             msg = "Your Pass Must Be 8 Character"
             return render(request, 'front/msgbox.html', {'msg':msg})
         
-        #Check similar UserName and Email.
+        #Check similar UserName and Email from database.
         if len(User.objects.filter(username=uname)) == 0 and len(User.objects.filter(email=email)) == 0 :
 
             user = User.objects.create_user(username=uname,email=email,password=password1)
-
+            b = Manager(name=name,utxt=uname,email=email)
+            b.save()
 
     return render(request, 'front/login.html')
 

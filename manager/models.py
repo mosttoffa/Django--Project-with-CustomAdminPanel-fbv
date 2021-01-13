@@ -8,8 +8,8 @@ class Manager(models.Model):
 
     name = models.CharField(max_length=50)
     utxt = models.TextField()
+    email = models.TextField(default="")
    
-
 
     def __str__(self):
         return self.name

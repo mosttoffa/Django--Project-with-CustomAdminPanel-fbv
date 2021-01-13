@@ -9,5 +9,21 @@ from django.contrib.auth.models import User
 
 def manager_list(request):
 
+    
+    manager = Manager.objects.all()
 
-    return render(request, 'back/manager_list.html')
+    return render(request, 'back/manager_list.html', {'manager':manager})
+
+
+
+def manager_del(request,pk):
+
+
+    manager = Manager.objects.get(pk=pk)
+    b = User.objects.filter(username=manager.utxt)
+    b.delete()
+
+    manager.delete()
+
+    return redirect('manager_list')
+
