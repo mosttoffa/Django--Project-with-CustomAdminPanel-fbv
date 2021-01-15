@@ -53,7 +53,9 @@
                         <div class="btn-group">
                             
                             <a href="{%url 'users_groups' pk=cc.pk %}" data-toggle="tooltip" title="Groups" class="btn btn-xs btn-default"><i class="fa fa-pencil"> Group </i></a>
-                            <a href="{%url 'manager_del' pk=cc.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete</i></a>
+                            <a href="{%url 'manager_del' pk=cc.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete User</i></a>
+                            <a href="{%url 'users_perms' pk=cc.pk %}" data-toggle="tooltip" title="Groups" class="btn btn-xs btn-default"><i class="fa fa-pencil"> Add / Dlt Permission</i></a>
+
                         </div>
                     </td>
                 </tr>

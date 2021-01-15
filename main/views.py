@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Main
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
 from manager.models import Manager
 
 
@@ -23,6 +23,17 @@ def panel(request):
     if not request.user.is_authenticated:
         return redirect('my_login')
     #Login check end
+    
+    #user permission on panel
+    perm = 0
+    perms = Permission.objects.filter(user=request.user)
+    for i in perms :
+        if i.codename == "masteruser" : perm = 1
+    
+    if perm == 0 :
+        error = "Access Denied"
+        return render(request, 'back/error.html' , {'error':error})
+
 
     return render(request, 'back/home.html')
 
