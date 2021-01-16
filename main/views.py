@@ -127,7 +127,6 @@ def contact(request):
 
 def product(request):
 
-    sitename = "Amin Tech Ltd | Product"
 
-    return render(request, 'front/product.html', {'sitename':sitename})
+    return render(request, 'front/product.html')
 
