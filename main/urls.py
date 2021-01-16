@@ -10,6 +10,5 @@ urlpatterns = [
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^register/$', views.myregister, name='myregister'),        
     url(r'^product/$', views.product, name='product'),
-    url(r'^product_detail/$', views.product_detail, name='product_detail'),
 
 ]

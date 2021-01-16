@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Main
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group, Permission
+from products.models import Categori, Products
 from manager.models import Manager
 
 
@@ -129,12 +130,4 @@ def product(request):
     sitename = "Amin Tech Ltd | Product"
 
     return render(request, 'front/product.html', {'sitename':sitename})
-
-
-def product_detail(request):
-
-    sitename = "Amin Tech Ltd | Product Details"
-
-    return render(request, 'front/product_detail.html', {'sitename':sitename})
-
 
